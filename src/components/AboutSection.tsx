@@ -5,7 +5,7 @@ const AboutSection = () => {
   const stats = [
     { number: "25+", label: "Anos em Engenharia", icon: <Award className="h-6 w-6" /> },
     { number: "10+", label: "Anos em Solar", icon: <Lightbulb className="h-6 w-6" /> },
-    { number: "1000+", label: "Projetos Executados", icon: <Users className="h-6 w-6" /> },
+    { number: "3000+", label: "Projetos Executados", icon: <Users className="h-6 w-6" /> },
     { number: "100%", label: "Tecnologia IA", icon: <Cpu className="h-6 w-6" /> }
   ];
 
@@ -83,18 +83,9 @@ const AboutSection = () => {
             </div>
 
             {/* Certifications */}
-            <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
-              <div className="bg-card border border-border rounded-lg px-4 py-2 text-sm">
-                CREA Registrado
-              </div>
-              <div className="bg-card border border-border rounded-lg px-4 py-2 text-sm">
-                Cert. ANEEL
-              </div>
-              <div className="bg-card border border-border rounded-lg px-4 py-2 text-sm">
-                ISO 9001
-              </div>
-              <div className="bg-card border border-border rounded-lg px-4 py-2 text-sm">
-                Tecnologia IA
+            <div className="animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
+              <div className="bg-card border border-border rounded-lg px-6 py-4 text-center">
+                <p className="text-sm font-medium">Empresa totalmente legalizada com Engenheiro próprio e com Registro no CREA</p>
               </div>
             </div>
           </div>

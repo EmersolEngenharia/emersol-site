@@ -83,12 +83,12 @@ const HeroSection = () => {
           {/* Right Content - Visual Element */}
           <div className="relative animate-fade-in-right">
             <div className="relative">
-              {/* Main Logo/Visual */}
+              {/* Main Logo/Visual - Removed glow-effect */}
               <div className="flex items-center justify-center">
                 <img 
                   src="/lovable-uploads/346171cb-7f65-42c1-93e8-9ccc997e289a.png" 
                   alt="Emersol Energy Solutions" 
-                  className="w-96 h-96 object-contain animate-float glow-effect"
+                  className="w-96 h-96 object-contain animate-float"
                 />
               </div>
               

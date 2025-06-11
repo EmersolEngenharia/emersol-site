@@ -21,7 +21,7 @@ Telefone: ${formData.phone}
 Cidade: ${formData.city}
 Mensagem: ${formData.message}`;
     
-    const whatsappUrl = `https://wa.me/5564999999999?text=${encodeURIComponent(whatsappMessage)}`;
+    const whatsappUrl = `https://wa.me/556492418765?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(whatsappUrl, '_blank');
   };
 
@@ -152,7 +152,7 @@ Mensagem: ${formData.message}`;
               
               <div className="space-y-6">
                 <a 
-                  href="https://wa.me/5564999999999" 
+                  href="https://wa.me/556492418765" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-4 p-4 bg-green-500/10 border border-green-500/30 rounded-lg hover:bg-green-500/20 transition-colors group"
@@ -160,7 +160,7 @@ Mensagem: ${formData.message}`;
                   <MessageCircle className="h-6 w-6 text-green-500" />
                   <div>
                     <div className="font-semibold text-green-500">WhatsApp Principal</div>
-                    <div className="text-sm text-muted-foreground">(64) 99999-9999</div>
+                    <div className="text-sm text-muted-foreground">(64) 9241-8765</div>
                   </div>
                 </a>
 
@@ -168,7 +168,7 @@ Mensagem: ${formData.message}`;
                   <Phone className="h-6 w-6 text-primary" />
                   <div>
                     <div className="font-semibold">Telefone Comercial</div>
-                    <div className="text-sm text-muted-foreground">(64) 3431-1234</div>
+                    <div className="text-sm text-muted-foreground">(64) 3431-3777</div>
                   </div>
                 </div>
 
@@ -184,8 +184,7 @@ Mensagem: ${formData.message}`;
                   <Clock className="h-6 w-6 text-primary" />
                   <div>
                     <div className="font-semibold">Horário de Atendimento</div>
-                    <div className="text-sm text-muted-foreground">Segunda a Sexta: 08h às 18h</div>
-                    <div className="text-sm text-muted-foreground">Sábado: 08h às 12h</div>
+                    <div className="text-sm text-muted-foreground">Segunda a Sexta: 7:30h às 17:30h</div>
                   </div>
                 </div>
               </div>
@@ -201,18 +200,18 @@ Mensagem: ${formData.message}`;
                 <div className="flex items-start space-x-4 p-4 bg-muted/50 rounded-lg">
                   <MapPin className="h-6 w-6 text-primary mt-1" />
                   <div>
-                    <div className="font-semibold">Itumbiara - GO</div>
-                    <div className="text-sm text-muted-foreground">Rua Principal, 123 - Centro</div>
-                    <div className="text-sm text-muted-foreground">CEP: 75500-000</div>
+                    <div className="font-semibold">Itumbiara/GO</div>
+                    <div className="text-sm text-muted-foreground">(64) 3431-3777 ou (64) 9966-3777</div>
+                    <div className="text-sm text-muted-foreground">Rua Leopoldo de Bulhões, 1401A, B. Santos Dumont</div>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-4 p-4 bg-muted/50 rounded-lg">
                   <MapPin className="h-6 w-6 text-primary mt-1" />
                   <div>
-                    <div className="font-semibold">Caldas Novas - GO</div>
-                    <div className="text-sm text-muted-foreground">Avenida das Águas, 456 - Setor Turístico</div>
-                    <div className="text-sm text-muted-foreground">CEP: 75690-000</div>
+                    <div className="font-semibold">Caldas Novas/GO</div>
+                    <div className="text-sm text-muted-foreground">(64) 3012-4017</div>
+                    <div className="text-sm text-muted-foreground">Avenida A, Quadra 15, Lote 05</div>
                   </div>
                 </div>
               </div>
@@ -226,22 +225,12 @@ Mensagem: ${formData.message}`;
               
               <div className="flex space-x-4">
                 <a 
-                  href="#" 
-                  className="flex items-center justify-center w-12 h-12 bg-blue-600/20 border border-blue-600/30 rounded-lg hover:bg-blue-600/30 transition-colors"
-                >
-                  <span className="text-blue-400 font-bold">f</span>
-                </a>
-                <a 
-                  href="#" 
+                  href="https://instagram.com/emersol_engenharia" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center justify-center w-12 h-12 bg-pink-600/20 border border-pink-600/30 rounded-lg hover:bg-pink-600/30 transition-colors"
                 >
                   <span className="text-pink-400 font-bold">ig</span>
-                </a>
-                <a 
-                  href="#" 
-                  className="flex items-center justify-center w-12 h-12 bg-blue-500/20 border border-blue-500/30 rounded-lg hover:bg-blue-500/30 transition-colors"
-                >
-                  <span className="text-blue-400 font-bold">in</span>
                 </a>
               </div>
             </div>

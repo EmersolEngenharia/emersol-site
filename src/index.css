@@ -7,6 +7,43 @@
 
 @layer base {
   :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+
+    --primary: 45 96% 55%;
+    --primary-foreground: 0 0% 2%;
+
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+
+    --accent: 45 96% 55%;
+    --accent-foreground: 0 0% 2%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 45 96% 55%;
+
+    --radius: 0.75rem;
+
+    /* Custom Emersol colors */
+    --emersol-yellow: 45 96% 55%;
+    --emersol-dark: 0 0% 8%;
+    --emersol-gray: 240 5% 25%;
+  }
+
+  .dark {
     --background: 0 0% 2%;
     --foreground: 0 0% 98%;
 
@@ -34,18 +71,6 @@
     --border: 0 0% 15%;
     --input: 0 0% 15%;
     --ring: 45 96% 55%;
-
-    --radius: 0.75rem;
-
-    /* Custom Emersol colors */
-    --emersol-yellow: 45 96% 55%;
-    --emersol-dark: 0 0% 8%;
-    --emersol-gray: 240 5% 25%;
-  }
-
-  .dark {
-    --background: 0 0% 2%;
-    --foreground: 0 0% 98%;
   }
 }
 
@@ -76,7 +101,7 @@
   .tech-gradient {
     background: linear-gradient(135deg, 
       hsl(var(--background)) 0%,
-      hsl(240 5% 8%) 50%,
+      hsl(var(--muted)) 50%,
       hsl(var(--background)) 100%);
   }
 

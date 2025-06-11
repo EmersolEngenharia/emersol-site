@@ -1,10 +1,17 @@
 
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Moon, Mail } from 'lucide-react';
+import { useTheme } from 'next-themes';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,7 +40,7 @@ const Header = () => {
             <img 
               src="/lovable-uploads/346171cb-7f65-42c1-93e8-9ccc997e289a.png" 
               alt="Emersol Logo" 
-              className="h-10 w-10 animate-pulse-glow"
+              className="h-10 w-10"
             />
             <div>
               <h1 className="font-orbitron font-bold text-xl text-primary">EMERSOL</h1>
@@ -42,7 +49,7 @@ const Header = () => {
           </div>
 
           {/* Desktop Menu */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-6">
             <button 
               onClick={() => scrollToSection('hero')}
               className="text-foreground hover:text-primary transition-colors"
@@ -67,6 +74,32 @@ const Header = () => {
             >
               Sobre
             </button>
+            
+            {/* Webmail Button */}
+            <a 
+              href="http://webmail.emersol.com.br/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-2 text-foreground hover:text-primary transition-colors"
+            >
+              <Mail className="h-4 w-4" />
+              <span>Webmail</span>
+            </a>
+
+            {/* Theme Toggle */}
+            {mounted && (
+              <button
+                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                className="p-2 rounded-full hover:bg-muted transition-colors"
+              >
+                {theme === 'dark' ? (
+                  <Sun className="h-5 w-5 text-primary" />
+                ) : (
+                  <Moon className="h-5 w-5 text-primary" />
+                )}
+              </button>
+            )}
+
             <button 
               onClick={() => scrollToSection('contact')}
               className="bg-primary text-primary-foreground px-6 py-2 rounded-full font-semibold hover:scale-105 transition-transform"
@@ -112,6 +145,36 @@ const Header = () => {
               >
                 Sobre
               </button>
+              
+              <a 
+                href="http://webmail.emersol.com.br/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-left flex items-center space-x-2 text-foreground hover:text-primary transition-colors"
+              >
+                <Mail className="h-4 w-4" />
+                <span>Webmail</span>
+              </a>
+
+              {mounted && (
+                <button
+                  onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                  className="text-left flex items-center space-x-2 text-foreground hover:text-primary transition-colors"
+                >
+                  {theme === 'dark' ? (
+                    <>
+                      <Sun className="h-4 w-4" />
+                      <span>Modo Claro</span>
+                    </>
+                  ) : (
+                    <>
+                      <Moon className="h-4 w-4" />
+                      <span>Modo Escuro</span>
+                    </>
+                  )}
+                </button>
+              )}
+
               <button 
                 onClick={() => scrollToSection('contact')}
                 className="text-left bg-primary text-primary-foreground px-6 py-2 rounded-full font-semibold w-fit"

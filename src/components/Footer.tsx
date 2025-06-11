@@ -41,10 +41,12 @@ const Footer = () => {
           <div className="space-y-4">
             <h4 className="font-semibold text-lg">Contato</h4>
             <div className="space-y-2 text-sm text-muted-foreground">
-              <p>📞 (64) 99999-9999</p>
+              <p>📞 (64) 9241-8765</p>
+              <p>📞 (64) 3431-3777</p>
               <p>✉️ contato@emersol.com.br</p>
               <p>📍 Itumbiara - GO</p>
               <p>📍 Caldas Novas - GO</p>
+              <p>🕐 Seg-Sex: 7:30h às 17:30h</p>
             </div>
           </div>
 
