@@ -42,11 +42,10 @@ const NewHeader = () => {
   const currentLang = languages.find(lang => lang.code === language);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
         ? 'bg-background/95 backdrop-blur-lg border-b border-border/40 shadow-sm'
         : 'bg-transparent'
-    }`}>
+      }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
 
@@ -55,9 +54,9 @@ const NewHeader = () => {
             onClick={() => scrollToSection('hero')}
             className="flex items-center space-x-3 group"
           >
-            <EmersolLogo 
-              size="medium" 
-              className="transition-transform duration-300 group-hover:scale-110" 
+            <EmersolLogo
+              size="medium"
+              className="transition-transform duration-300 group-hover:scale-110"
             />
             {/* 
             <div>
@@ -106,7 +105,7 @@ const NewHeader = () => {
 
                 {/* Language Dropdown */}
                 {isLangMenuOpen && (
-                  <div className="absolute top-full right-0 mt-2 w-40 bg-background border border-border rounded-lg shadow-lg overflow-hidden">
+                  <div className="absolute top-full right-0 mt-2 w-40 bg-background border border-border rounded-lg shadow-lg overflow-hidden z-50">
                     {languages.map((lang) => (
                       <button
                         key={lang.code}
@@ -114,9 +113,8 @@ const NewHeader = () => {
                           setLanguage(lang.code);
                           setIsLangMenuOpen(false);
                         }}
-                        className={`w-full flex items-center space-x-2 px-4 py-2.5 text-sm hover:bg-muted transition-colors ${
-                          language === lang.code ? 'bg-muted text-primary font-medium' : 'text-foreground'
-                        }`}
+                        className={`w-full flex items-center space-x-2 px-4 py-2.5 text-sm hover:bg-muted transition-colors ${language === lang.code ? 'bg-muted text-primary font-medium' : 'text-foreground'
+                          }`}
                       >
                         <span className="text-lg">{lang.flag}</span>
                         <span>{lang.name}</span>
@@ -195,11 +193,10 @@ const NewHeader = () => {
                         setLanguage(lang.code);
                         setIsMenuOpen(false);
                       }}
-                      className={`flex items-center space-x-2 px-3 py-2 text-sm rounded-lg transition-all ${
-                        language === lang.code
+                      className={`flex items-center space-x-2 px-3 py-2 text-sm rounded-lg transition-all ${language === lang.code
                           ? 'bg-primary text-primary-foreground font-medium'
                           : 'bg-muted text-foreground hover:bg-muted/80'
-                      }`}
+                        }`}
                     >
                       <span>{lang.flag}</span>
                       <span>{lang.name}</span>
