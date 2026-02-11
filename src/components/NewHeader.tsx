@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X, Sun, Moon, Globe } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useLanguage, Language } from '@/contexts/LanguageContext';
+import EmersolLogo from './EmersolLogo';
 
 const NewHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -54,11 +55,11 @@ const NewHeader = () => {
             onClick={() => scrollToSection('hero')}
             className="flex items-center space-x-3 group"
           >
-            <img
-              src="/lovable-uploads/346171cb-7f65-42c1-93e8-9ccc997e289a.png"
-              alt="Emersol Logo"
-              className="h-10 w-10 transition-transform duration-300 group-hover:scale-110"
+            <EmersolLogo 
+              size="medium" 
+              className="transition-transform duration-300 group-hover:scale-110" 
             />
+            {/* 
             <div>
               <h1 className="font-orbitron font-bold text-lg md:text-xl text-foreground group-hover:text-primary transition-colors">
                 EMERSOL
@@ -67,6 +68,7 @@ const NewHeader = () => {
                 ENGENHARIA SOLAR
               </p>
             </div>
+            */}
           </button>
 
           {/* Desktop Menu */}

@@ -1,5 +1,6 @@
 import { Instagram } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import EmersolLogo from './EmersolLogo';
 
 const NewFooter = () => {
   const { t } = useLanguage();
@@ -21,15 +22,13 @@ const NewFooter = () => {
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
-              <img
-                src="/lovable-uploads/346171cb-7f65-42c1-93e8-9ccc997e289a.png"
-                alt="Emersol Logo"
-                className="h-12 w-12"
-              />
+              <EmersolLogo size="medium" className="h-12 w-auto" />
+              {/* 
               <div>
                 <h3 className="font-orbitron font-bold text-xl text-foreground">EMERSOL</h3>
                 <p className="text-xs text-muted-foreground">ENGENHARIA • ENERGIA SOLAR</p>
               </div>
+              */}
             </div>
             <p className="text-sm text-muted-foreground max-w-md">
               {t('footer.slogan')}

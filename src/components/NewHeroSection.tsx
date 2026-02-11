@@ -1,5 +1,6 @@
 import { Zap, TrendingUp, Shield } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import EmersolLogo from './EmersolLogo';
 
 const NewHeroSection = () => {
   const { t } = useLanguage();
@@ -94,11 +95,7 @@ const NewHeroSection = () => {
           {/* Right Content - Visual */}
           <div className="relative lg:block hidden">
             <div className="relative flex items-center justify-center">
-              <img
-                src="/lovable-uploads/346171cb-7f65-42c1-93e8-9ccc997e289a.png"
-                alt="Emersol Energy Solutions"
-                className="w-full max-w-lg object-contain drop-shadow-2xl"
-              />
+              <EmersolLogo size="full" className="max-w-lg drop-shadow-2xl" />
             </div>
           </div>
 
