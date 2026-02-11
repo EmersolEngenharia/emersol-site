@@ -1,6 +1,7 @@
 import { Zap, TrendingUp, Shield } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import SolarTechAnimation from './SolarTechAnimation';
+import { AuroraBackground } from '@/components/ui/aurora-background';
 
 const NewHeroSection = () => {
   const { t } = useLanguage();
@@ -20,10 +21,10 @@ const NewHeroSection = () => {
   };
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-background via-background to-muted/20 pt-16">
+    <AuroraBackground className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16" id="hero">
 
       {/* Subtle Background */}
-      <div className="absolute inset-0 opacity-5">
+      <div className="absolute inset-0 opacity-5 z-10">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
       </div>
@@ -107,7 +108,7 @@ const NewHeroSection = () => {
           <div className="w-1.5 h-3 bg-primary rounded-full mt-2" />
         </div>
       </div>
-    </section>
+    </AuroraBackground>
   );
 };
 
