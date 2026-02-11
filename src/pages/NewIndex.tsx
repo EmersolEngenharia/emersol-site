@@ -17,7 +17,7 @@ const NewIndex = () => {
       <NewHeader />
       <main id="solutions">
         <NewHeroSection />
-        <CalculatorSection />
+        {/* <CalculatorSection /> - Removed as per user request */}
         <EngineeringSection />
         <TechnicalServicesSection />
         <MobilitySection />

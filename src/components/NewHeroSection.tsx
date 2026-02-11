@@ -1,6 +1,6 @@
 import { Zap, TrendingUp, Shield } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import EmersolLogo from './EmersolLogo';
+import SolarTechAnimation from './SolarTechAnimation';
 
 const NewHeroSection = () => {
   const { t } = useLanguage();
@@ -92,10 +92,9 @@ const NewHeroSection = () => {
             </div>
           </div>
 
-          {/* Right Content - Visual */}
           <div className="relative lg:block hidden">
             <div className="relative flex items-center justify-center">
-              <EmersolLogo size="full" className="max-w-lg drop-shadow-2xl" />
+              <SolarTechAnimation />
             </div>
           </div>
 

@@ -1,4 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import pt from '../locales/pt';
+import en from '../locales/en';
+import es from '../locales/es';
 
 export type Language = 'pt' | 'en' | 'es';
 
@@ -32,6 +35,12 @@ interface LanguageProviderProps {
   children: ReactNode;
 }
 
+const translationsMap: Record<Language, Record<string, string>> = {
+  pt,
+  en,
+  es
+};
+
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
   const [language, setLanguageState] = useState<Language>(() => {
     // Tenta pegar do localStorage primeiro
@@ -47,20 +56,11 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     return savedLang;
   });
 
-  const [translations, setTranslations] = useState<Record<string, string>>({});
+  const [translations, setTranslations] = useState<Record<string, string>>(translationsMap[language]);
 
-  // Carrega as traduções quando o idioma muda
+  // Atualiza as traduções quando o idioma muda
   useEffect(() => {
-    const loadTranslations = async () => {
-      try {
-        const module = await import(`../locales/${language}.ts`);
-        setTranslations(module.default);
-      } catch (error) {
-        console.error(`Failed to load translations for ${language}`, error);
-      }
-    };
-
-    loadTranslations();
+    setTranslations(translationsMap[language]);
   }, [language]);
 
   const setLanguage = (lang: Language) => {

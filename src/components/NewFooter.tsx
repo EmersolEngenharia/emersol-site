@@ -41,7 +41,6 @@ const NewFooter = () => {
             <nav className="flex flex-col space-y-2">
               {[
                 { id: 'hero', label: t('nav.home') },
-                { id: 'calculator', label: t('calculator.title.economy') },
                 { id: 'about', label: t('nav.about') },
                 { id: 'contact', label: t('nav.contact') },
               ].map((link) => (
