@@ -7,58 +7,40 @@ const NewFooter = () => {
   const currentYear = new Date().getFullYear();
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <footer className="bg-muted/30 border-t border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
-
-          {/* Brand */}
+    <footer className="bg-background border-t border-border/50">
+      <div className="max-w-6xl mx-auto px-6 sm:px-8 py-16">
+        <div className="grid md:grid-cols-4 gap-10 mb-12">
           <div className="md:col-span-2">
-            <div className="flex items-center space-x-3 mb-4">
-              <EmersolLogo size="medium" className="h-12 w-auto" />
-              {/* 
-              <div>
-                <h3 className="font-orbitron font-bold text-xl text-foreground">EMERSOL</h3>
-                <p className="text-xs text-muted-foreground">ENGENHARIA • ENERGIA SOLAR</p>
-              </div>
-              */}
+            <div className="flex items-center space-x-3 mb-5">
+              <EmersolLogo size="medium" className="h-10 w-auto" />
             </div>
-            <p className="text-sm text-muted-foreground max-w-md">
+            <p className="text-sm text-muted-foreground max-w-sm font-light leading-relaxed">
               {t('footer.slogan')}
             </p>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">{t('footer.quick.links')}</h4>
-            <nav className="flex flex-col space-y-2">
+            <h4 className="font-semibold text-sm text-foreground mb-4 uppercase tracking-wider">{t('footer.quick.links')}</h4>
+            <nav className="flex flex-col space-y-3">
               {[
                 { id: 'hero', label: t('nav.home') },
                 { id: 'about', label: t('nav.about') },
                 { id: 'contact', label: t('nav.contact') },
               ].map((link) => (
-                <button
-                  key={link.id}
-                  onClick={() => scrollToSection(link.id)}
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors text-left"
-                >
+                <button key={link.id} onClick={() => scrollToSection(link.id)} className="text-sm text-muted-foreground hover:text-accent transition-colors text-left font-light">
                   {link.label}
                 </button>
               ))}
             </nav>
           </div>
 
-          {/* Services */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">{t('footer.services')}</h4>
-            <nav className="flex flex-col space-y-2">
+            <h4 className="font-semibold text-sm text-foreground mb-4 uppercase tracking-wider">{t('footer.services')}</h4>
+            <nav className="flex flex-col space-y-3">
               {[
                 { id: 'engineering', label: t('engineering.title.energy') },
                 { id: 'technical', label: t('technical.title.specialized') },
@@ -66,43 +48,24 @@ const NewFooter = () => {
                 { id: 'technology', label: t('technology.title.systems') },
                 { id: 'cooperatives', label: t('cooperatives.title.credits') },
               ].map((link) => (
-                <button
-                  key={link.id}
-                  onClick={() => scrollToSection(link.id)}
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors text-left"
-                >
+                <button key={link.id} onClick={() => scrollToSection(link.id)} className="text-sm text-muted-foreground hover:text-accent transition-colors text-left font-light">
                   {link.label}
                 </button>
               ))}
             </nav>
           </div>
-
         </div>
 
-        {/* Bottom */}
-        <div className="pt-8 border-t border-border">
+        <div className="pt-8 border-t border-border/30">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-
-            <div className="text-sm text-muted-foreground text-center md:text-left">
+            <div className="text-xs text-muted-foreground text-center md:text-left font-light">
               © {currentYear} Emersol. {t('footer.rights')} | {t('footer.crea')}
             </div>
-
-            {/* Social */}
-            <div className="flex items-center space-x-4">
-              <a
-                href="https://instagram.com/emersol_engenharia"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram className="h-5 w-5" />
-              </a>
-            </div>
-
+            <a href="https://instagram.com/emersol_engenharia" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-accent transition-colors" aria-label="Instagram">
+              <Instagram className="h-5 w-5" strokeWidth={1.5} />
+            </a>
           </div>
         </div>
-
       </div>
     </footer>
   );
