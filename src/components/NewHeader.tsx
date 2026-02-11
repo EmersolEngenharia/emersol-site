@@ -12,25 +12,17 @@ const NewHeader = () => {
   const { language, setLanguage, t } = useLanguage();
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  useEffect(() => { setMounted(true); }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
-    }
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+    setIsMenuOpen(false);
   };
 
   const languages: { code: Language; name: string; flag: string }[] = [
@@ -42,35 +34,19 @@ const NewHeader = () => {
   const currentLang = languages.find(lang => lang.code === language);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-        ? 'bg-background/95 backdrop-blur-lg border-b border-border/40 shadow-sm'
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      isScrolled
+        ? 'glass border-b border-border/30 shadow-sm'
         : 'bg-transparent'
-      }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    }`}>
+      <div className="max-w-6xl mx-auto px-6 sm:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
 
-          {/* Logo */}
-          <button
-            onClick={() => scrollToSection('hero')}
-            className="flex items-center space-x-3 group"
-          >
-            <EmersolLogo
-              size="medium"
-              className="transition-transform duration-300 group-hover:scale-110"
-            />
-            {/* 
-            <div>
-              <h1 className="font-orbitron font-bold text-lg md:text-xl text-foreground group-hover:text-primary transition-colors">
-                EMERSOL
-              </h1>
-              <p className="text-[10px] md:text-xs text-muted-foreground tracking-wide">
-                ENGENHARIA SOLAR
-              </p>
-            </div>
-            */}
+          <button onClick={() => scrollToSection('hero')} className="flex items-center space-x-3 group">
+            <EmersolLogo size="medium" className="transition-transform duration-300 group-hover:scale-105" />
           </button>
 
-          {/* Desktop Menu */}
+          {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center space-x-1">
             {[
               { id: 'hero', label: t('nav.home') },
@@ -81,40 +57,34 @@ const NewHeader = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="px-4 py-2 text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-200"
+                className="px-4 py-2 text-sm font-medium text-foreground/70 hover:text-foreground rounded-full transition-all duration-200"
               >
                 {item.label}
               </button>
             ))}
           </nav>
 
-          {/* Right Side Actions */}
+          {/* Right Side */}
           <div className="flex items-center space-x-2">
-
-            {/* Language Selector */}
             {mounted && (
               <div className="relative">
                 <button
                   onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
-                  className="hidden sm:flex items-center space-x-2 px-3 py-2 text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-200"
+                  className="hidden sm:flex items-center space-x-1.5 px-3 py-2 text-sm text-foreground/70 hover:text-foreground rounded-full transition-all"
                 >
                   <Globe className="h-4 w-4" />
-                  <span className="text-lg">{currentLang?.flag}</span>
-                  <span className="hidden md:inline">{currentLang?.code.toUpperCase()}</span>
+                  <span className="text-base">{currentLang?.flag}</span>
                 </button>
 
-                {/* Language Dropdown */}
                 {isLangMenuOpen && (
-                  <div className="absolute top-full right-0 mt-2 w-40 bg-background border border-border rounded-lg shadow-lg overflow-hidden z-50">
+                  <div className="absolute top-full right-0 mt-2 w-40 glass border border-border rounded-2xl shadow-xl overflow-hidden z-50">
                     {languages.map((lang) => (
                       <button
                         key={lang.code}
-                        onClick={() => {
-                          setLanguage(lang.code);
-                          setIsLangMenuOpen(false);
-                        }}
-                        className={`w-full flex items-center space-x-2 px-4 py-2.5 text-sm hover:bg-muted transition-colors ${language === lang.code ? 'bg-muted text-primary font-medium' : 'text-foreground'
-                          }`}
+                        onClick={() => { setLanguage(lang.code); setIsLangMenuOpen(false); }}
+                        className={`w-full flex items-center space-x-2 px-4 py-2.5 text-sm hover:bg-foreground/5 transition-colors ${
+                          language === lang.code ? 'text-accent font-medium' : 'text-foreground'
+                        }`}
                       >
                         <span className="text-lg">{lang.flag}</span>
                         <span>{lang.name}</span>
@@ -125,47 +95,36 @@ const NewHeader = () => {
               </div>
             )}
 
-            {/* Theme Toggle */}
             {mounted && (
               <button
                 onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                className="hidden sm:flex items-center justify-center w-10 h-10 rounded-lg hover:bg-muted/50 transition-colors"
+                className="hidden sm:flex items-center justify-center w-9 h-9 rounded-full hover:bg-foreground/5 transition-colors"
                 aria-label="Toggle theme"
               >
-                {theme === 'dark' ? (
-                  <Sun className="h-5 w-5 text-foreground/80" />
-                ) : (
-                  <Moon className="h-5 w-5 text-foreground/80" />
-                )}
+                {theme === 'dark' ? <Sun className="h-4 w-4 text-foreground/70" /> : <Moon className="h-4 w-4 text-foreground/70" />}
               </button>
             )}
 
-            {/* CTA Button - Desktop */}
             <button
               onClick={() => scrollToSection('contact')}
-              className="hidden md:inline-flex items-center px-5 py-2.5 bg-primary text-primary-foreground font-semibold text-sm rounded-lg hover:bg-primary/90 transition-all duration-200 shadow-sm hover:shadow-md"
+              className="hidden md:inline-flex items-center px-5 py-2 bg-accent text-accent-foreground font-semibold text-sm rounded-full hover:brightness-110 transition-all duration-200 shadow-sm"
             >
               {t('nav.contact')}
             </button>
 
-            {/* Mobile Menu Button */}
             <button
-              className="lg:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-muted/50 transition-colors"
+              className="lg:hidden flex items-center justify-center w-9 h-9 rounded-full hover:bg-foreground/5 transition-colors"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
             >
-              {isMenuOpen ? (
-                <X className="h-5 w-5 text-foreground" />
-              ) : (
-                <Menu className="h-5 w-5 text-foreground" />
-              )}
+              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
         </div>
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="lg:hidden border-t border-border/40 py-4 animate-fade-in-down">
+          <div className="lg:hidden border-t border-border/30 py-4 animate-fade-in-down">
             <nav className="flex flex-col space-y-1">
               {[
                 { id: 'hero', label: t('nav.home') },
@@ -176,27 +135,24 @@ const NewHeader = () => {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="text-left px-4 py-3 text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-200"
+                  className="text-left px-4 py-3 text-sm font-medium text-foreground/70 hover:text-foreground hover:bg-foreground/5 rounded-xl transition-all"
                 >
                   {item.label}
                 </button>
               ))}
 
-              {/* Mobile Language Selector */}
               <div className="px-4 py-2">
                 <p className="text-xs font-medium text-muted-foreground mb-2">Idioma / Language</p>
                 <div className="flex flex-wrap gap-2">
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
-                      onClick={() => {
-                        setLanguage(lang.code);
-                        setIsMenuOpen(false);
-                      }}
-                      className={`flex items-center space-x-2 px-3 py-2 text-sm rounded-lg transition-all ${language === lang.code
-                          ? 'bg-primary text-primary-foreground font-medium'
-                          : 'bg-muted text-foreground hover:bg-muted/80'
-                        }`}
+                      onClick={() => { setLanguage(lang.code); setIsMenuOpen(false); }}
+                      className={`flex items-center space-x-2 px-3 py-2 text-sm rounded-full transition-all ${
+                        language === lang.code
+                          ? 'bg-accent text-accent-foreground font-medium'
+                          : 'bg-foreground/5 text-foreground hover:bg-foreground/10'
+                      }`}
                     >
                       <span>{lang.flag}</span>
                       <span>{lang.name}</span>
@@ -205,23 +161,12 @@ const NewHeader = () => {
                 </div>
               </div>
 
-              {/* Mobile Theme Toggle */}
               {mounted && (
                 <button
                   onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                  className="flex items-center space-x-3 px-4 py-3 text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-200"
+                  className="flex items-center space-x-3 px-4 py-3 text-sm font-medium text-foreground/70 hover:text-foreground hover:bg-foreground/5 rounded-xl transition-all"
                 >
-                  {theme === 'dark' ? (
-                    <>
-                      <Sun className="h-5 w-5" />
-                      <span>Modo Claro</span>
-                    </>
-                  ) : (
-                    <>
-                      <Moon className="h-5 w-5" />
-                      <span>Modo Escuro</span>
-                    </>
-                  )}
+                  {theme === 'dark' ? <><Sun className="h-5 w-5" /><span>Modo Claro</span></> : <><Moon className="h-5 w-5" /><span>Modo Escuro</span></>}
                 </button>
               )}
             </nav>
@@ -229,13 +174,7 @@ const NewHeader = () => {
         )}
       </div>
 
-      {/* Click outside to close language menu */}
-      {isLangMenuOpen && (
-        <div
-          className="fixed inset-0 z-40"
-          onClick={() => setIsLangMenuOpen(false)}
-        />
-      )}
+      {isLangMenuOpen && <div className="fixed inset-0 z-40" onClick={() => setIsLangMenuOpen(false)} />}
     </header>
   );
 };
