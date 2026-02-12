@@ -1,16 +1,69 @@
 import { Award, Users, Lightbulb, Cpu } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 import solarFarm from '@/assets/solar-farm.jpg';
+
+const useCountUp = (end: number, duration = 2000, startCounting: boolean) => {
+  const [count, setCount] = useState(0);
+  const hasStarted = useRef(false);
+
+  useEffect(() => {
+    if (!startCounting || hasStarted.current) return;
+    hasStarted.current = true;
+    const startTime = performance.now();
+    const step = (now: number) => {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * end));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [startCounting, end, duration]);
+
+  return count;
+};
+
+const CountUpStat = ({ end, suffix, labelKey, icon, delay }: { end: number; suffix: string; labelKey: string; icon: React.ReactNode; delay: number }) => {
+  const { t } = useLanguage();
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const [startCounting, setStartCounting] = useState(false);
+  const count = useCountUp(end, 2000, startCounting);
+
+  useEffect(() => {
+    if (isInView) {
+      const timer = setTimeout(() => setStartCounting(true), delay * 100);
+      return () => clearTimeout(timer);
+    }
+  }, [isInView, delay]);
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: delay * 0.1 }}
+      className="bg-secondary/60 rounded-2xl p-6 text-center"
+    >
+      <div className="text-accent mb-3 flex justify-center">{icon}</div>
+      <div className="font-inter font-bold text-3xl md:text-4xl text-foreground mb-2">
+        {count}{suffix}
+      </div>
+      <div className="text-sm text-muted-foreground font-light">{t(labelKey)}</div>
+    </motion.div>
+  );
+};
 
 const NewAboutSection = () => {
   const { t } = useLanguage();
 
   const stats = [
-    { number: "25+", labelKey: "about.years.engineering", icon: <Award className="h-5 w-5" strokeWidth={1.5} /> },
-    { number: "10+", labelKey: "about.years.solar", icon: <Lightbulb className="h-5 w-5" strokeWidth={1.5} /> },
-    { number: "3000+", labelKey: "about.projects", icon: <Users className="h-5 w-5" strokeWidth={1.5} /> },
-    { number: "100%", labelKey: "about.ai.technology", icon: <Cpu className="h-5 w-5" strokeWidth={1.5} /> }
+    { end: 25, suffix: "+", labelKey: "about.years.engineering", icon: <Award className="h-5 w-5" strokeWidth={1.5} /> },
+    { end: 10, suffix: "+", labelKey: "about.years.solar", icon: <Lightbulb className="h-5 w-5" strokeWidth={1.5} /> },
+    { end: 3000, suffix: "+", labelKey: "about.projects", icon: <Users className="h-5 w-5" strokeWidth={1.5} /> },
+    { end: 100, suffix: "%", labelKey: "about.ai.technology", icon: <Cpu className="h-5 w-5" strokeWidth={1.5} /> }
   ];
 
   return (
@@ -61,18 +114,14 @@ const NewAboutSection = () => {
           >
             <div className="grid grid-cols-2 gap-4">
               {stats.map((stat, index) => (
-                <motion.div
+                <CountUpStat
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-secondary/60 rounded-2xl p-6 text-center"
-                >
-                  <div className="text-accent mb-3 flex justify-center">{stat.icon}</div>
-                  <div className="font-inter font-bold text-3xl md:text-4xl text-foreground mb-2">{stat.number}</div>
-                  <div className="text-sm text-muted-foreground font-light">{t(stat.labelKey)}</div>
-                </motion.div>
+                  end={stat.end}
+                  suffix={stat.suffix}
+                  labelKey={stat.labelKey}
+                  icon={stat.icon}
+                  delay={index}
+                />
               ))}
             </div>
 
