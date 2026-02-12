@@ -15,9 +15,10 @@ const NewIndex = () => {
   return (
     <div className="min-h-screen">
       <NewHeader />
-      <main id="solutions">
+      <main>
         <NewHeroSection />
         {/* <CalculatorSection /> - Removed as per user request */}
+        <div id="solutions" />
         <EngineeringSection />
         <TechnicalServicesSection />
         <MobilitySection />
