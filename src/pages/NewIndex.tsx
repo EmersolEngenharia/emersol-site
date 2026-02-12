@@ -7,6 +7,7 @@ import MobilitySection from "@/components/MobilitySection";
 import TechnologySection from "@/components/TechnologySection";
 import CooperativesSection from "@/components/CooperativesSection";
 import NewAboutSection from "@/components/NewAboutSection";
+import PartnersSection from "@/components/PartnersSection";
 
 import NewContactSection from "@/components/NewContactSection";
 import NewFooter from "@/components/NewFooter";
@@ -26,7 +27,8 @@ const NewIndex = () => {
         <TechnologySection />
         <CooperativesSection />
         <NewAboutSection />
-        
+        <PartnersSection />
+
         <NewContactSection />
       </main>
       <NewFooter />
