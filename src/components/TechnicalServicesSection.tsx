@@ -35,12 +35,19 @@ const TechnicalServicesSection = () => {
             </p>
           </motion.div>
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="rounded-3xl overflow-hidden shadow-2xl shadow-foreground/5"
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="relative overflow-hidden"
           >
-            <img src={solarDetail} alt="Painéis solares de alta tecnologia" className="w-full h-72 object-cover" />
+            <img src={solarDetail} alt="Técnico realizando manutenção em painéis solares" className="w-full h-72 object-cover" />
+            {/* Faded/smoky edges */}
+            <div className="absolute inset-0 pointer-events-none" style={{
+              boxShadow: 'inset 0 0 60px 30px hsl(var(--secondary) / 0.8)',
+            }} />
+            <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-secondary/60 via-transparent to-secondary/60" />
+            <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-secondary/40 via-transparent to-secondary/60" />
           </motion.div>
         </div>
 
