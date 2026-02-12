@@ -1,6 +1,7 @@
 import { Car, TrendingUp, Users, BarChart3, Network } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
+import evMobilityImg from '@/assets/ev-mobility.png';
 
 const MobilitySection = () => {
   const { t } = useLanguage();
@@ -33,6 +34,16 @@ const MobilitySection = () => {
               <p className="text-muted-foreground text-sm leading-relaxed font-light">{t(service.descKey)}</p>
             </motion.div>
           ))}
+          {/* Image card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: services.length * 0.08 }}
+            className="group bg-card border border-border/60 rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-lg hover:shadow-accent/5 hover:-translate-y-1 flex items-center justify-center p-6"
+          >
+            <img src={evMobilityImg} alt="Mobilidade elétrica sustentável" className="w-full h-full object-contain" />
+          </motion.div>
         </div>
       </div>
     </section>
