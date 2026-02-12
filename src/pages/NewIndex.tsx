@@ -8,7 +8,7 @@ import TechnologySection from "@/components/TechnologySection";
 import CooperativesSection from "@/components/CooperativesSection";
 import NewAboutSection from "@/components/NewAboutSection";
 import PartnersSection from "@/components/PartnersSection";
-
+import FAQSection from "@/components/FAQSection";
 import NewContactSection from "@/components/NewContactSection";
 import NewFooter from "@/components/NewFooter";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -28,7 +28,7 @@ const NewIndex = () => {
         <CooperativesSection />
         <NewAboutSection />
         <PartnersSection />
-
+        <FAQSection />
         <NewContactSection />
       </main>
       <NewFooter />
