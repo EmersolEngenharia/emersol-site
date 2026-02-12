@@ -1,4 +1,4 @@
-import { Instagram } from 'lucide-react';
+import { Instagram, Youtube, Podcast } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import EmersolLogo from './EmersolLogo';
 
@@ -61,9 +61,17 @@ const NewFooter = () => {
             <div className="text-xs text-muted-foreground text-center md:text-left font-light">
               © {currentYear} Emersol. {t('footer.rights')} | {t('footer.crea')}
             </div>
-            <a href="https://instagram.com/emersol_engenharia" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-accent transition-colors" aria-label="Instagram">
-              <Instagram className="h-5 w-5" strokeWidth={1.5} />
-            </a>
+            <div className="flex items-center gap-4">
+              <a href="https://instagram.com/emersol_engenharia" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-accent transition-colors" aria-label="Instagram">
+                <Instagram className="h-5 w-5" strokeWidth={1.5} />
+              </a>
+              <a href="https://www.youtube.com/@emersol4591" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-accent transition-colors" aria-label="YouTube">
+                <Youtube className="h-5 w-5" strokeWidth={1.5} />
+              </a>
+              <a href="https://open.spotify.com/show/08YZzUlNLOs3SdyqewyH6j?si=59682be0f8d8431e" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-accent transition-colors" aria-label="Podcast">
+                <Podcast className="h-5 w-5" strokeWidth={1.5} />
+              </a>
+            </div>
           </div>
         </div>
       </div>
