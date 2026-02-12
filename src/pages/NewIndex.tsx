@@ -12,6 +12,7 @@ import FAQSection from "@/components/FAQSection";
 import NewContactSection from "@/components/NewContactSection";
 import NewFooter from "@/components/NewFooter";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import CTABanner from "@/components/CTABanner";
 
 const NewIndex = () => {
   return (
@@ -23,9 +24,11 @@ const NewIndex = () => {
         <div id="solutions" />
         <EngineeringSection />
         <TechnicalServicesSection />
+        <CTABanner />
         <MobilitySection />
         <TechnologySection />
         <CooperativesSection />
+        <CTABanner variant="alt" />
         <NewAboutSection />
         <PartnersSection />
         <FAQSection />
