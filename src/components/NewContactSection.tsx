@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Phone, MapPin, Mail, MessageCircle, Send, Clock, Instagram } from 'lucide-react';
+import { Phone, MapPin, Mail, MessageCircle, Send, Clock, Instagram, ExternalLink } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
 
@@ -90,10 +90,10 @@ const NewContactSection = () => {
                   <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center"><Phone className="h-5 w-5 text-accent" /></div>
                   <div><div className="font-medium text-sm">{t('contact.direct.phone')}</div><div className="text-sm text-muted-foreground">(64) 3431-3777</div></div>
                 </div>
-                <div className="flex items-center gap-4 p-4 rounded-2xl bg-secondary/60">
+                <a href="mailto:engenharia@emersol.com.br" className="flex items-center gap-4 p-4 rounded-2xl bg-secondary/60 hover:bg-secondary/80 transition-all">
                   <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center"><Mail className="h-5 w-5 text-accent" /></div>
-                  <div><div className="font-medium text-sm">{t('contact.direct.email')}</div><div className="text-sm text-muted-foreground">contato@emersol.com.br</div></div>
-                </div>
+                  <div><div className="font-medium text-sm">{t('contact.direct.email')}</div><div className="text-sm text-muted-foreground">engenharia@emersol.com.br</div></div>
+                </a>
                 <div className="flex items-center gap-4 p-4 rounded-2xl bg-secondary/60">
                   <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center"><Clock className="h-5 w-5 text-accent" /></div>
                   <div><div className="font-medium text-sm">{t('contact.direct.hours')}</div><div className="text-sm text-muted-foreground">{t('contact.direct.hours.text')}</div></div>
@@ -104,14 +104,22 @@ const NewContactSection = () => {
             <div className="bg-card rounded-3xl p-8 shadow-xl shadow-foreground/[0.03]">
               <h3 className="font-semibold text-xl mb-6 text-foreground">{t('contact.units.title')}</h3>
               <div className="space-y-3">
-                <div className="flex items-start gap-4 p-4 rounded-2xl bg-secondary/60">
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+Leopoldo+de+Bulhões+1401A+Santos+Dumont+Itumbiara+GO" target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 p-4 rounded-2xl bg-secondary/60 hover:bg-secondary/80 transition-all group">
                   <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0 mt-0.5"><MapPin className="h-5 w-5 text-accent" /></div>
-                  <div><div className="font-medium text-sm">Itumbiara/GO</div><div className="text-sm text-muted-foreground">(64) 3431-3777 ou (64) 9966-3777</div><div className="text-sm text-muted-foreground">Rua Leopoldo de Bulhões, 1401A, B. Santos Dumont</div></div>
-                </div>
-                <div className="flex items-start gap-4 p-4 rounded-2xl bg-secondary/60">
+                  <div className="flex-1">
+                    <div className="font-medium text-sm flex items-center gap-1.5">Itumbiara/GO <ExternalLink className="h-3 w-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" /></div>
+                    <div className="text-sm text-muted-foreground">(64) 3431-3777 ou (64) 9966-3777</div>
+                    <div className="text-sm text-muted-foreground">Rua Leopoldo de Bulhões, 1401A, B. Santos Dumont</div>
+                  </div>
+                </a>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Avenida+A+Quadra+15+Lote+05+Caldas+Novas+GO" target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 p-4 rounded-2xl bg-secondary/60 hover:bg-secondary/80 transition-all group">
                   <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0 mt-0.5"><MapPin className="h-5 w-5 text-accent" /></div>
-                  <div><div className="font-medium text-sm">Caldas Novas/GO</div><div className="text-sm text-muted-foreground">(64) 3012-4017</div><div className="text-sm text-muted-foreground">Avenida A, Quadra 15, Lote 05</div></div>
-                </div>
+                  <div className="flex-1">
+                    <div className="font-medium text-sm flex items-center gap-1.5">Caldas Novas/GO <ExternalLink className="h-3 w-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" /></div>
+                    <div className="text-sm text-muted-foreground">(64) 3012-4017</div>
+                    <div className="text-sm text-muted-foreground">Avenida A, Quadra 15, Lote 05</div>
+                  </div>
+                </a>
               </div>
             </div>
 
