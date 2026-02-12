@@ -10,7 +10,7 @@ const faqs = [
   {
     question: "Quanto custa instalar energia solar?",
     answer:
-      "O investimento varia conforme o consumo e o tipo de instalação. Um sistema residencial típico custa entre R$ 15.000 e R$ 35.000, com retorno do investimento em 3 a 5 anos. Oferecemos financiamento facilitado com nossos parceiros financeiros.",
+      "O investimento varia conforme o consumo e o tipo de instalação. Um sistema residencial típico custa entre R$ 10.000 e R$ 35.000, com retorno do investimento em 2 a 5 anos. Obviamente existem casos abaixo de R$ 10.000,00 e também casos em que o sistema supera os R$ 35.000,00 Oferecemos financiamento facilitado com nossos parceiros financeiros.",
   },
   {
     question: "Quanto posso economizar na conta de luz?",
@@ -45,7 +45,7 @@ const faqs = [
   {
     question: "A Emersol atende minha região?",
     answer:
-      "Atendemos todo o estado de Goiás e regiões próximas, com unidades em Itumbiara e Caldas Novas. Entre em contato para verificar a disponibilidade na sua localidade.",
+      "Atendemos todo o estado de Goiás e regiões próximas de Uberlândia/MG, com unidades em Itumbiara e Caldas Novas. Entre em contato para verificar a disponibilidade na sua localidade.",
   },
 ];
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Sun, Moon, Globe } from 'lucide-react';
+import { Menu, X, Sun, Moon, Globe, Mail } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useLanguage, Language } from '@/contexts/LanguageContext';
 import EmersolLogo from './EmersolLogo';
@@ -34,11 +34,10 @@ const NewHeader = () => {
   const currentLang = languages.find(lang => lang.code === language);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      isScrolled
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
         ? 'glass border-b border-border/30 shadow-sm'
         : 'bg-transparent'
-    }`}>
+      }`}>
       <div className="max-w-6xl mx-auto px-6 sm:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
 
@@ -66,6 +65,16 @@ const NewHeader = () => {
 
           {/* Right Side */}
           <div className="flex items-center space-x-2">
+            <a
+              href="https://webmail.emersol.com.br"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:flex items-center space-x-1.5 px-3 py-2 text-sm text-foreground/70 hover:text-foreground rounded-full transition-all"
+              title="Acessar Webmail"
+            >
+              <Mail className="h-4 w-4" />
+              <span className="hidden lg:inline">Webmail</span>
+            </a>
             {mounted && (
               <div className="relative">
                 <button
@@ -82,9 +91,8 @@ const NewHeader = () => {
                       <button
                         key={lang.code}
                         onClick={() => { setLanguage(lang.code); setIsLangMenuOpen(false); }}
-                        className={`w-full flex items-center space-x-2 px-4 py-2.5 text-sm hover:bg-foreground/5 transition-colors ${
-                          language === lang.code ? 'text-accent font-medium' : 'text-foreground'
-                        }`}
+                        className={`w-full flex items-center space-x-2 px-4 py-2.5 text-sm hover:bg-foreground/5 transition-colors ${language === lang.code ? 'text-accent font-medium' : 'text-foreground'
+                          }`}
                       >
                         <span className="text-lg">{lang.flag}</span>
                         <span>{lang.name}</span>
@@ -141,6 +149,16 @@ const NewHeader = () => {
                 </button>
               ))}
 
+              <a
+                href="https://webmail.emersol.com.br"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-3 px-4 py-3 text-sm font-medium text-foreground/70 hover:text-foreground hover:bg-foreground/5 rounded-xl transition-all"
+              >
+                <Mail className="h-5 w-5" />
+                <span>Webmail</span>
+              </a>
+
               <div className="px-4 py-2">
                 <p className="text-xs font-medium text-muted-foreground mb-2">Idioma / Language</p>
                 <div className="flex flex-wrap gap-2">
@@ -148,11 +166,10 @@ const NewHeader = () => {
                     <button
                       key={lang.code}
                       onClick={() => { setLanguage(lang.code); setIsMenuOpen(false); }}
-                      className={`flex items-center space-x-2 px-3 py-2 text-sm rounded-full transition-all ${
-                        language === lang.code
+                      className={`flex items-center space-x-2 px-3 py-2 text-sm rounded-full transition-all ${language === lang.code
                           ? 'bg-accent text-accent-foreground font-medium'
                           : 'bg-foreground/5 text-foreground hover:bg-foreground/10'
-                      }`}
+                        }`}
                     >
                       <span>{lang.flag}</span>
                       <span>{lang.name}</span>
