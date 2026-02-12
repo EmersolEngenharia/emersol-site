@@ -10,6 +10,7 @@ import NewAboutSection from "@/components/NewAboutSection";
 import InstagramSection from "@/components/InstagramSection";
 import NewContactSection from "@/components/NewContactSection";
 import NewFooter from "@/components/NewFooter";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const NewIndex = () => {
   return (
@@ -29,6 +30,7 @@ const NewIndex = () => {
         <NewContactSection />
       </main>
       <NewFooter />
+      <WhatsAppButton />
     </div>
   );
 };
