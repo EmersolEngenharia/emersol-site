@@ -19,6 +19,8 @@ const financialPartners = [
   { name: "Banco do Brasil", url: "https://www.bb.com.br" },
   { name: "CAIXA", url: "https://www.caixa.gov.br" },
   { name: "Bradesco", url: "https://www.bradesco.com.br" },
+  { name: "Solfácil", url: "https://www.solfacil.com.br" },
+  { name: "Cartão Crédito", url: "#" },
 ];
 
 const PartnerGrid = ({ partners, delayOffset = 0 }: { partners: typeof techPartners; delayOffset?: number }) => (
