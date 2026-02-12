@@ -35,8 +35,8 @@ const NewHeader = () => {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-        ? 'glass border-b border-border/30 shadow-sm'
-        : 'bg-transparent'
+      ? 'glass border-b border-border/30 shadow-sm'
+      : 'bg-transparent'
       }`}>
       <div className="max-w-6xl mx-auto px-6 sm:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
@@ -130,9 +130,8 @@ const NewHeader = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="lg:hidden border-t border-border/30 py-4 animate-fade-in-down">
+          <div className="lg:hidden absolute top-[64px] left-0 right-0 bg-background/90 backdrop-blur-md border-b border-border/30 shadow-lg py-4 px-4 animate-fade-in-down rounded-b-2xl">
             <nav className="flex flex-col space-y-1">
               {[
                 { id: 'hero', label: t('nav.home') },
@@ -167,8 +166,8 @@ const NewHeader = () => {
                       key={lang.code}
                       onClick={() => { setLanguage(lang.code); setIsMenuOpen(false); }}
                       className={`flex items-center space-x-2 px-3 py-2 text-sm rounded-full transition-all ${language === lang.code
-                          ? 'bg-accent text-accent-foreground font-medium'
-                          : 'bg-foreground/5 text-foreground hover:bg-foreground/10'
+                        ? 'bg-accent text-accent-foreground font-medium'
+                        : 'bg-foreground/5 text-foreground hover:bg-foreground/10'
                         }`}
                     >
                       <span>{lang.flag}</span>
