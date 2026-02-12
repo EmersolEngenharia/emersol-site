@@ -7,7 +7,7 @@ import MobilitySection from "@/components/MobilitySection";
 import TechnologySection from "@/components/TechnologySection";
 import CooperativesSection from "@/components/CooperativesSection";
 import NewAboutSection from "@/components/NewAboutSection";
-import InstagramSection from "@/components/InstagramSection";
+
 import NewContactSection from "@/components/NewContactSection";
 import NewFooter from "@/components/NewFooter";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -26,7 +26,7 @@ const NewIndex = () => {
         <TechnologySection />
         <CooperativesSection />
         <NewAboutSection />
-        <InstagramSection />
+        
         <NewContactSection />
       </main>
       <NewFooter />
