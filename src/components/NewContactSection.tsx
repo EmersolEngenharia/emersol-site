@@ -103,23 +103,51 @@ const NewContactSection = () => {
 
             <div className="bg-card rounded-3xl p-8 shadow-xl shadow-foreground/[0.03]">
               <h3 className="font-semibold text-xl mb-6 text-foreground">{t('contact.units.title')}</h3>
-              <div className="space-y-3">
-                <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+Leopoldo+de+Bulhões+1401A+Santos+Dumont+Itumbiara+GO" target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 p-4 rounded-2xl bg-secondary/60 hover:bg-secondary/80 transition-all group">
-                  <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0 mt-0.5"><MapPin className="h-5 w-5 text-accent" /></div>
-                  <div className="flex-1">
-                    <div className="font-medium text-sm flex items-center gap-1.5">Itumbiara/GO <ExternalLink className="h-3 w-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" /></div>
-                    <div className="text-sm text-muted-foreground">(64) 3431-3777 ou (64) 9966-3777</div>
-                    <div className="text-sm text-muted-foreground">Rua Leopoldo de Bulhões, 1401A, B. Santos Dumont</div>
+              <div className="space-y-4">
+                <div className="rounded-2xl overflow-hidden bg-secondary/60 p-4">
+                  <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+Leopoldo+de+Bulhões+1401A+Santos+Dumont+Itumbiara+GO" target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 mb-3 group">
+                    <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0 mt-0.5"><MapPin className="h-5 w-5 text-accent" /></div>
+                    <div className="flex-1">
+                      <div className="font-medium text-sm flex items-center gap-1.5">Itumbiara/GO <ExternalLink className="h-3 w-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" /></div>
+                      <div className="text-sm text-muted-foreground">(64) 3431-3777 ou (64) 9966-3777</div>
+                      <div className="text-sm text-muted-foreground">Rua Leopoldo de Bulhões, 1401A, B. Santos Dumont</div>
+                    </div>
+                  </a>
+                  <div className="rounded-xl overflow-hidden h-40">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.5!2d-49.2158!3d-18.4097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDI0JzM1LjAiUyA0OcKwMTInNTcuMCJX!5e0!3m2!1spt-BR!2sbr!4v1700000000000"
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Emersol Itumbiara"
+                    />
                   </div>
-                </a>
-                <a href="https://www.google.com/maps/dir/?api=1&destination=Avenida+A+Quadra+15+Lote+05+Caldas+Novas+GO" target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 p-4 rounded-2xl bg-secondary/60 hover:bg-secondary/80 transition-all group">
-                  <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0 mt-0.5"><MapPin className="h-5 w-5 text-accent" /></div>
-                  <div className="flex-1">
-                    <div className="font-medium text-sm flex items-center gap-1.5">Caldas Novas/GO <ExternalLink className="h-3 w-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" /></div>
-                    <div className="text-sm text-muted-foreground">(64) 3012-4017</div>
-                    <div className="text-sm text-muted-foreground">Avenida A, Quadra 15, Lote 05</div>
+                </div>
+                <div className="rounded-2xl overflow-hidden bg-secondary/60 p-4">
+                  <a href="https://www.google.com/maps/dir/?api=1&destination=Avenida+A+Quadra+15+Lote+05+Caldas+Novas+GO" target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 mb-3 group">
+                    <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0 mt-0.5"><MapPin className="h-5 w-5 text-accent" /></div>
+                    <div className="flex-1">
+                      <div className="font-medium text-sm flex items-center gap-1.5">Caldas Novas/GO <ExternalLink className="h-3 w-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" /></div>
+                      <div className="text-sm text-muted-foreground">(64) 3012-4017</div>
+                      <div className="text-sm text-muted-foreground">Avenida A, Quadra 15, Lote 05</div>
+                    </div>
+                  </a>
+                  <div className="rounded-xl overflow-hidden h-40">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.5!2d-48.6258!3d-17.7367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDQ0JzEyLjAiUyA0OMKwMzcnMzMuMCJX!5e0!3m2!1spt-BR!2sbr!4v1700000000000"
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Emersol Caldas Novas"
+                    />
                   </div>
-                </a>
+                </div>
               </div>
             </div>
 
