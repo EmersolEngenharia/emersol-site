@@ -8,7 +8,7 @@ const partners = [
   { name: "Sungrow", url: "https://www.sungrowpower.com" },
   { name: "Canadian Solar", url: "https://www.canadiansolar.com" },
   { name: "Fronius", url: "https://www.fronius.com" },
-  { name: "Growatt", url: "https://www.growatt.com" },
+  { name: "Hoymiles", url: "https://www.hoymiles.com" },
   { name: "JA Solar", url: "https://www.jasolar.com" },
 ];
 
