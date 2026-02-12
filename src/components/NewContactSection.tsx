@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Phone, MapPin, Mail, MessageCircle, Send, Clock, Instagram, ExternalLink } from 'lucide-react';
+import { Phone, MapPin, Mail, MessageCircle, Send, Clock, Instagram, ExternalLink, Youtube, Podcast } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
 
@@ -153,10 +153,20 @@ const NewContactSection = () => {
 
             <div className="bg-card rounded-3xl p-8 shadow-xl shadow-foreground/[0.03]">
               <h3 className="font-semibold text-xl mb-4 text-foreground">{t('contact.social.title')}</h3>
-              <a href="https://instagram.com/emersol_engenharia" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-4 rounded-2xl bg-pink-500/5 hover:bg-pink-500/10 transition-all">
-                <div className="w-10 h-10 rounded-xl bg-pink-500/10 flex items-center justify-center"><Instagram className="h-5 w-5 text-pink-500" /></div>
-                <span className="font-medium text-sm text-foreground">@emersol_engenharia</span>
-              </a>
+              <div className="space-y-3">
+                <a href="https://instagram.com/emersol_engenharia" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-4 rounded-2xl bg-pink-500/5 hover:bg-pink-500/10 transition-all">
+                  <div className="w-10 h-10 rounded-xl bg-pink-500/10 flex items-center justify-center"><Instagram className="h-5 w-5 text-pink-500" /></div>
+                  <span className="font-medium text-sm text-foreground">@emersol_engenharia</span>
+                </a>
+                <a href="https://www.youtube.com/@emersol4591" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-4 rounded-2xl bg-red-500/5 hover:bg-red-500/10 transition-all">
+                  <div className="w-10 h-10 rounded-xl bg-red-500/10 flex items-center justify-center"><Youtube className="h-5 w-5 text-red-500" /></div>
+                  <span className="font-medium text-sm text-foreground">Emersol no YouTube</span>
+                </a>
+                <a href="https://open.spotify.com/show/08YZzUlNLOs3SdyqewyH6j?si=59682be0f8d8431e" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-4 rounded-2xl bg-green-500/5 hover:bg-green-500/10 transition-all">
+                  <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center"><Podcast className="h-5 w-5 text-green-500" /></div>
+                  <span className="font-medium text-sm text-foreground">Emersol Podcast</span>
+                </a>
+              </div>
             </div>
           </motion.div>
         </div>
