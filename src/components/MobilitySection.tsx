@@ -37,31 +37,42 @@ const MobilitySection = () => {
           ))}
         </div>
 
-        {/* Center image with faded edges */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="flex justify-center my-8"
-        >
-          <div className="relative w-full max-w-md">
+        {/* Second row - card + image + card */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
+          {/* Card 4 */}
+          {services.slice(3, 4).map((service, index) => (
+            <motion.div key={index + 3} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 3 * 0.08 }}
+              className="group bg-card border border-border/60 hover:border-accent/30 rounded-2xl p-8 transition-all duration-500 hover:shadow-lg hover:shadow-accent/5 hover:-translate-y-1">
+              <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors duration-300">
+                <div className="text-accent">{service.icon}</div>
+              </div>
+              <h3 className="font-semibold text-lg mb-3 text-foreground">{t(service.titleKey)}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed font-light">{t(service.descKey)}</p>
+            </motion.div>
+          ))}
+
+          {/* Center image with faded edges */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="flex items-center justify-center rounded-2xl overflow-hidden"
+          >
             <img
               src={evMobilityImg}
               alt="Mobilidade elétrica sustentável"
-              className="w-full h-auto object-contain"
+              className="w-full h-full object-contain"
               style={{
                 maskImage: 'radial-gradient(ellipse 70% 70% at center, black 40%, transparent 100%)',
                 WebkitMaskImage: 'radial-gradient(ellipse 70% 70% at center, black 40%, transparent 100%)',
               }}
             />
-          </div>
-        </motion.div>
+          </motion.div>
 
-        {/* Second row - 2 cards centered */}
-        <div className="grid md:grid-cols-2 gap-5 max-w-2xl mx-auto">
-          {services.slice(3).map((service, index) => (
-            <motion.div key={index + 3} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: (index + 3) * 0.08 }}
+          {/* Card 5 */}
+          {services.slice(4, 5).map((service, index) => (
+            <motion.div key={index + 4} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 4 * 0.08 }}
               className="group bg-card border border-border/60 hover:border-accent/30 rounded-2xl p-8 transition-all duration-500 hover:shadow-lg hover:shadow-accent/5 hover:-translate-y-1">
               <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors duration-300">
                 <div className="text-accent">{service.icon}</div>
