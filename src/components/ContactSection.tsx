@@ -202,7 +202,7 @@ Mensagem: ${formData.message}`;
                   <div>
                     <div className="font-semibold">Itumbiara/GO</div>
                     <div className="text-sm text-muted-foreground">(64) 3431-3777 ou (64) 9966-3777</div>
-                    <div className="text-sm text-muted-foreground">Rua Leopoldo de Bulhões, 1401A, B. Santos Dumont</div>
+                    <div className="text-sm text-muted-foreground">Rua José Martins Correia, 494, B. Paranaíba — CEP 75526-300</div>
                   </div>
                 </div>
 
