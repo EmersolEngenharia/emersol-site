@@ -60,14 +60,38 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+## Deploy no VPS (Plesk)
 
-Simply open [Lovable](https://lovable.dev/projects/da9ec21d-8221-4445-bfac-4d2aeb9d9849) and click on Share -> Publish.
+A publicação do site institucional fica em [`.github/workflows/deploy-site.yml`](.github/workflows/deploy-site.yml). O Actions gera o `dist/` com Vite e envia essa pasta por rsync/SSH. O job não publica nada enquanto a variável de repositório `DEPLOY_VPS` não estiver definida como `true` — isso vale para push na `main` e para o disparo manual.
 
-## Can I connect a custom domain to my Lovable project?
+`https://emersol.com.br` é a URL canônica. `https://emersol.ai` serve o mesmo build, com canonical, Open Graph, sitemap e robots apontando para o `.com.br`.
 
-Yes, you can!
+### Secrets
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Em **Settings → Secrets and variables → Actions → Secrets**, neste repositório:
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+| Nome | Função |
+| --- | --- |
+| `VPS_HOST` | IP ou hostname SSH do Plesk |
+| `VPS_USER` | usuário SSH com permissão de escrita no destino |
+| `VPS_SSH_KEY_B64` | chave privada em base64, numa linha só (formato preferido) |
+| `VPS_SSH_KEY` | chave privada em texto; usada somente se `VPS_SSH_KEY_B64` estiver vazio |
+| `SITE_VPS_PATH` | diretório do site institucional no VPS |
+
+`VPS_HOST`, `VPS_USER`, `VPS_SSH_KEY_B64` e `VPS_SSH_KEY` usam os mesmos nomes do repositório `EmersolEngenharia/emersoft-emersol-ai`. Secrets de repositório não são herdados: os valores precisam existir aqui também.
+
+`SITE_VPS_PATH` é exclusivo deste site. O destino do Emersoft continua no secret `VPS_PATH` do outro repositório. Um exemplo de docroot institucional é `/var/www/vhosts/emersol.ai/httpdocs`. O workflow interrompe o envio se `SITE_VPS_PATH` estiver vazio ou se o caminho contiver `app.emersol.ai` ou `emersoft`.
+
+### Variável
+
+Em **Settings → Secrets and variables → Actions → Variables**:
+
+| Nome | Função |
+| --- | --- |
+| `DEPLOY_VPS` | `true` habilita o deploy. Sem esse valor o job é ignorado. |
+
+### Checagem e o que o rsync preserva
+
+Depois do envio, o workflow exige HTTP 200 em `https://emersol.ai` e que o HTML servido traga o canonical `https://emersol.com.br/`. A checagem passa quando o WWW-Root de `emersol.ai` é a pasta de `SITE_VPS_PATH`.
+
+O rsync usa `--delete` e preserva no destino `.well-known/`, `cartao/` e `tmp-announce/`.

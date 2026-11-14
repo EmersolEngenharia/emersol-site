@@ -1,0 +1,145 @@
+# Publica o site institucional no VPS (Plesk).
+#
+# SPA Vite: o Actions faz o build e envia só a pasta dist/ por rsync/SSH.
+# O servidor não precisa de Node — o NGINX/Apache serve arquivo estático.
+#
+# Secrets (Settings › Secrets and variables › Actions), neste repositório:
+#   VPS_HOST         IP ou hostname do servidor (mesmo nome do Emersoft)
+#   VPS_USER         usuário SSH com escrita em SITE_VPS_PATH (mesmo nome)
+#   VPS_SSH_KEY_B64  chave privada em base64, numa linha só (preferido)
+#   VPS_SSH_KEY      alternativa em texto (BEGIN…END); só se VPS_SSH_KEY_B64
+#                    estiver vazio
+#   SITE_VPS_PATH    docroot do site institucional
+#                    (ex.: /var/www/vhosts/emersol.ai/httpdocs)
+#                    Nunca a pasta do Emersoft (VPS_PATH no outro repositório).
+# Variável (Settings › Secrets and variables › Actions › Variables):
+#   DEPLOY_VPS       'true' habilita o deploy. Sem esse valor o job é ignorado,
+#                    inclusive no "Run workflow".
+#
+# https://emersol.ai serve este site. O canonical oficial permanece
+# https://emersol.com.br/.
+name: Deploy do site no VPS
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '**.md'
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-site
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build-deploy:
+    if: vars.DEPLOY_VPS == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      # Recusa a pasta do ERP antes de qualquer conexão. O caminho não é impresso.
+      - name: Validar destino
+        env:
+          SITE_VPS_PATH: ${{ secrets.SITE_VPS_PATH }}
+        run: |
+          if [ -z "$SITE_VPS_PATH" ]; then
+            echo "::error::Secret SITE_VPS_PATH ausente. Use o docroot do site institucional, em um secret novo. O destino do Emersoft permanece em VPS_PATH no outro repositório."
+            exit 1
+          fi
+          case "$SITE_VPS_PATH" in
+            /*) ;;
+            *)
+              echo "::error::SITE_VPS_PATH precisa ser um caminho absoluto no servidor."
+              exit 1
+              ;;
+          esac
+          case "$SITE_VPS_PATH" in
+            *app.emersol.ai*|*emersoft*)
+              echo "::error::SITE_VPS_PATH aponta para a pasta do Emersoft. O envio foi cancelado."
+              exit 1
+              ;;
+          esac
+
+      - name: Configurar chave SSH
+        env:
+          KEY_B64: ${{ secrets.VPS_SSH_KEY_B64 }}
+          KEY_TXT: ${{ secrets.VPS_SSH_KEY }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+        run: |
+          mkdir -p ~/.ssh
+          if [ -n "$KEY_B64" ]; then
+            printf '%s' "$KEY_B64" | tr -d ' \n\r\t' | base64 -d > ~/.ssh/id_deploy
+            origem="VPS_SSH_KEY_B64"
+          elif [ -n "$KEY_TXT" ]; then
+            printf '%s\n' "$KEY_TXT" | sed 's/\r$//' > ~/.ssh/id_deploy
+            origem="VPS_SSH_KEY"
+          else
+            echo "::error::Nenhum secret de chave encontrado. Crie VPS_SSH_KEY_B64 (base64 -w0 da chave privada)."
+            exit 1
+          fi
+          chmod 600 ~/.ssh/id_deploy
+          linhas=$(wc -l < ~/.ssh/id_deploy)
+          cabecalho=$(head -c 35 ~/.ssh/id_deploy)
+          echo "Chave lida de $origem: $linhas linhas, começa com '$cabecalho'"
+          if ! ssh-keygen -y -f ~/.ssh/id_deploy > /dev/null 2>&1; then
+            echo "::error::A chave privada em $origem não é válida (normalmente as quebras de linha se perderam na cópia, ou foi colado o arquivo .pub). Use a mesma chave do repositório do Emersoft, em VPS_SSH_KEY_B64."
+            exit 1
+          fi
+          if [ -z "$VPS_HOST" ]; then
+            echo "::error::Secret VPS_HOST ausente."
+            exit 1
+          fi
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      # --delete remove do servidor o que saiu do build. .well-known, cartao e
+      # tmp-announce já existem no httpdocs e ficam de fora.
+      # O index.html vai por último para ninguém pegar um HTML novo apontando
+      # para assets que ainda não subiram.
+      - name: Enviar build
+        env:
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          SITE_VPS_PATH: ${{ secrets.SITE_VPS_PATH }}
+        run: |
+          if [ -z "$VPS_USER" ] || [ -z "$VPS_HOST" ]; then
+            echo "::error::VPS_USER ou VPS_HOST ausente."
+            exit 1
+          fi
+          rsync -az --delete \
+            --exclude '.well-known/' \
+            --exclude 'cartao/' \
+            --exclude 'tmp-announce/' \
+            --exclude 'index.html' \
+            -e "ssh -i ~/.ssh/id_deploy -o IdentitiesOnly=yes" \
+            dist/ "${VPS_USER}@${VPS_HOST}:${SITE_VPS_PATH}/"
+          rsync -az \
+            -e "ssh -i ~/.ssh/id_deploy -o IdentitiesOnly=yes" \
+            dist/index.html "${VPS_USER}@${VPS_HOST}:${SITE_VPS_PATH}/index.html"
+
+      - name: Conferir se o site respondeu
+        run: |
+          url="https://emersol.ai/"
+          body=$(mktemp)
+          code=$(curl -sS -L --max-redirs 5 --max-time 30 -o "$body" -w '%{http_code}' "$url")
+          echo "$url respondeu $code"
+          test "$code" = "200"
+          if ! grep -q 'rel="canonical" href="https://emersol.com.br/"' "$body"; then
+            echo "::error::https://emersol.ai respondeu, mas o HTML não é o site institucional (falta o canonical https://emersol.com.br/). O WWW-Root do Plesk precisa ser a pasta de SITE_VPS_PATH. O rsync desta execução já terminou."
+            exit 1
+          fi
+          echo "Canonical https://emersol.com.br/ encontrado em https://emersol.ai/."
